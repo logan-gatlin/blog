@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <h1>
+    lgatlin.dev
+  </h1>
+  <hr>
+  <ul class="nav">
+  <h2>
+    /blog/
+  </h2>
+  {% set blog_section = get_section(path="blog/_index.md")%}
+  {% for page in blog_section.pages %}
+    <li>
+      <a href=" {{page.permalink | safe }} ">
+        /{{ page.slug }}/
+      </a>
+      {{ page.title }}
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock content %}
