@@ -26,8 +26,8 @@ Each part of the compiler went through dozens of iterations before reaching its 
 In retrospect, the most difficult part to get right was the data structures.
 This will be the guide I wish I had at the start: a complete breakdown of every data structure I use in my compiler.
 
-## Primitives
-### Span
+# Primitives
+## Span
 Most data structures reference some part of the source code.
 I use the `Span` struct to represent a section of the source code.
 ```rust
@@ -54,7 +54,7 @@ struct Spanned<T> {
 }
 ```
 
-### Log
+## Log
 Error reporting is the primary user interface of your compiler.
 It is important to take errors into consideration from the very beginning.
 The `Log` struct represents error, warning, and info messages to report.
@@ -75,7 +75,7 @@ struct Log {
 When an error is encountered, compilation will continue if possible.
 All errors are collected into a vector, and presented to the user at the end.
 
-## Tokens
+# Tokens
 Most languages will have dozens of different kinds of tokens.
 Listing every token kind I use would take up too much space and not be informative, so I provided an abbreviated list.
 ```rust
@@ -128,7 +128,7 @@ In Particular, LSPs and documentation generators care about comments.
 The `Error` token helps report better errors during parsing, like in the case `1m + 1`.
 `1m` is not a valid token, but if I ignore it, I am left with effectively `+ 1`, which looks like the user intended to use `+` as a prefix unary operator, when that is clearly not the case.
 
-## Parsing
+# Parsing
 The next step is to parse an array of tokens into a tree data structure.
 I use different types to represent statements, expressions, types, and patterns.
 This section will be easier to follow if the reader has a basic understanding of [Halcyon's grammar](https://halcyon-lang.dev/language_reference/anatomy.html).
@@ -159,7 +159,7 @@ Notice that every type has an associated span.
 This is necessary everywhere that an error could still be lurking.
 There are many kinds of errors that parsing cannot check, so I am keeping the spans around.
 
-### Value expressions
+## Value expressions
 I call expressions that evaluate to something a "value expression".
 They are represented as a tree data structure.
 The `BinaryOp` and `UnaryOp` types are not interesting, they are simply a subset of the `Token` enum.
@@ -244,7 +244,7 @@ enum ArrayInner {
 }
 ```
 
-### Pattern expressions
+## Pattern expressions
 Patterns are used in `let` and `match` expressions.
 They can bind variables, unwrap algebraic data types, and provide type hints.
 Because patterns can also be recursive, they are represented by another tree data structure.
@@ -285,7 +285,7 @@ enum ParsedArrayPattern {
 }
 ```
 
-### Type definitions and expressions
+## Type definitions and expressions
 Parsed types are separated into definitions and expressions.
 There are several important differences between the two:
 * Type definitions must be given an explicit name using a `type` statement.
@@ -337,7 +337,7 @@ enum TypeExpressionKind {
 type TypeExpression = Spanned<TypeExpressionKind>;
 ```
 
-## Intermediate representation
+# Intermediate representation
 The purpose of an intermediate representation (or IR) is to strip down the parse tree into a more minimal and normalized form.
 Several simplifications are performed: 
 * All identifiers and paths are normalized into globally unique, fully qualified `Path`'s.
@@ -410,7 +410,7 @@ enum PatternKind {
     TypeHint(Box<Pattern>, Type),
 }
 ```
-### Paths
+## Paths
 A path is an unambiguous name for a variable or type.
 It consists of the name of the module it is defined in, the name of the thing itself, and optionally a salt (see name spaces).
 I represent paths as just a thin wrapper over the `String` type.
@@ -418,7 +418,7 @@ I represent paths as just a thin wrapper over the `String` type.
 struct Path(String);
 ```
 
-### Name spaces
+## Name spaces
 A namespace is used to convert identifiers into a canonical, fully qualified `Path`.
 It is responsible for handling scope, or lifetime, of variables.
 Halcyon has three different namespaces:
@@ -459,7 +459,7 @@ Depending on your languages needs, you may need to attach all sorts of extra inf
 Halcyon additionally keeps track of each declarations function depth, which is used to detect illegally recursive definitions.
 It may also be a good idea to track the spans of where definitions where declared inside a namespace.
 
-## Types
+# Types
 Types are complicated enough to warrant their own section.
 Crucially, the intermediate representation is the first time types appear.
 Every `IrNode` and `Pattern` has an attached type, initially set to a "null" value.
@@ -513,13 +513,13 @@ struct AbstractType {
   base: Type,
 }
 ```
-### Type variables
+## Type variables
 The hindley milner type inference scheme Halcyon's type system is based on uses type variables.
 These are like placeholders for some yet undetermined type.
 When a variable appears in a type signature, that type is "abstract".
 An abstract type can be "instantiated" by providing some parameter types which will replace each type variable.
 
-### Abstract types
+## Abstract types
 Type definitions may have zero or more type parameters, and must be instantiated in order to be used.
 An abstract type represents a possibly uninstantiated type created by a type definition.
 All in-scope abstract types are stored in a "universe", which is just a dictionary mapping paths to a corresponding `AbstractType`.
@@ -531,7 +531,7 @@ If I were to try and fully expand a type like `LinkedList` that refers to itself
 The `Instantiation` variant is an annoying edge case in the compiler that has caused me a lot of grief.
 However, it is the best solution to the problem of cyclical types I have found that works inside the constraints of Rust's memory model.
 
-## Code generation
+# Code generation
 After type checking, it is time to lower the IR tree into an array of assembly instructions.
 The `Instruction` enum is part of the `wasm-encoder` crate, and contains every kind of WASM instruction.
 Compiled functions are represented as such:
