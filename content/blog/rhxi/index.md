@@ -83,6 +83,7 @@ I convinced my embedded programming professor at UTSA to let me spend the spring
 As part of that, I will write a more comprehensive article about my problems with ROS soon.
 
 # Demo time
+<iframe src="https://www.youtube.com/embed/GZPTllNVlMg?si=diG8keHzl03ofhd8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 Live demos at RowdyHacks have always been a struggle for me.
 We typically get about 5 minutes and only a few square feet of space to show off.
 Certain kinds of projects just present *better* than others under these conditions.
@@ -100,3 +101,8 @@ I should have wrote a `systemd` service to initialize the robot automatically on
 An obvious improvement point for the motion controls would be to implement inverse kinematics.
 Currently, the `X`, `Y`, and `Z` coordinates of the hand are translated directly into servo orientations.
 This gives the initial impression that the arm is mirroring your hand, when in reality it is just a crude imitation.
+I'm sure if I came into the competition already familiar with the algorithms for this I could pull it off.
+Over the next semester I will find an excuse to incorporate IK into a project.
+
+In conclusion the event was a lot of fun!
+Thanks to my team for helping make this happen.
