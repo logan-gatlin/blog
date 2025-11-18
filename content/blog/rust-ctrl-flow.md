@@ -51,11 +51,6 @@ The next level of understanding is that your program is a two way street.
 Crates like [`anyhow`](https://docs.rs/anyhow/latest/anyhow/) and [`thiserror`](https://docs.rs/thiserror/latest/thiserror/) help write structured errors that gain context as they climb up the call stack.
 
 Most programs will have two paths, success and failure.
-The successful path travels *down* and then *up* the callstack.
-It executes some algorithm by breaking it up piecewise.
-Functions call other functions with increasingly specific purposes.
-Pieces of the puzzle are returned back up the call stack, where they are assembled into some final product.
-
 The fail path travels *up* the callstack.
 The `Result` type and `?` operator are off-ramps from the successful path to the fail path.
 When an error happens, its exact cause may not be very specific or useful to report.
@@ -233,6 +228,8 @@ fn process_file<'a>(
 
 Resumable functions are difficult to read and write.
 Rust has an [upcoming feature](https://rust-lang.github.io/rfcs/3513-gen-blocks.html) called `gen` blocks, which are an abstraction for this pattern.
+I still think its important to understand how to write resumable code though.
+
 ```rust
 let mut generator = gen {
     for x in [0, 1, 2, 3] {
