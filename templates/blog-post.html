@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block head %}
+<meta name="og:url" content="{{page.permalink}}">
+<meta name="og:title" content="{{page.title}}">
+<meta name="article:published_time" content="{{page.date}}">
+<meta name="article:author" content="Logan Gatlin">
+{% endblock head %}
+
 {% block content %}
 <h1 class="between">
   {{ page.title }}
