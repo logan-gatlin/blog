@@ -6,17 +6,27 @@
     lgatlin.dev
   </h1>
   <hr>
-  <ul class="nav">
+  <ul class="article-list">
   <h2>
     Blog
   </h2>
   {% set blog_section = get_section(path="blog/_index.md")%}
   {% for page in blog_section.pages %}
     <li>
+    <!--
       <a href=" {{page.permalink | safe }} ">
         ./{{ page.slug }}
       </a>
-      {{ page.title }}
+    -->
+    <header>
+      <a href="{{ page.permalink | safe }}">
+        ./{{page.slug}}
+      </a>
+    </header>
+    {{ page.title }}
+    <footer>
+      {{ page.date }} 
+    </footer>
     </li>
   {% endfor %}
   </ul>

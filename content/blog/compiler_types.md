@@ -1,5 +1,6 @@
 +++
 title = "The data structures of a compiler"
+draft = true
 date = 2025-10-13
 +++
 

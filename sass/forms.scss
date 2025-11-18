@@ -1,0 +1,121 @@
+@use 'vars';
+
+button {
+  position: relative;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  background: transparent;
+  color: vars.$accent;
+  padding: 5px 18px;
+  border: 4px solid vars.$accent;
+  transition: background 0.15s linear;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background: color-mix(in srgb, vars.$accent 15%, transparent);
+}
+
+button:focus-visible {
+  outline: 0.2px solid vars.$accent;
+  outline-offset: 2px;
+}
+
+fieldset {
+  display: inline-block;
+  border: 2px solid vars.$foreground;
+  padding: 10px;
+}
+
+fieldset *:first-child {
+  margin-top: 0;
+}
+
+fieldset input,
+fieldset select,
+fieldset textarea,
+fieldset label,
+fieldset button {
+  margin-top: calc(vars.$line-height * 0.5);
+  width: 100%;
+}
+
+label {
+  display: inline-block;
+}
+
+label input {
+  margin-top: 0;
+}
+
+input,
+textarea,
+select {
+  background: transparent;
+  color: vars.$foreground;
+  border: 1px solid vars.$foreground;
+  padding: 10px;
+  font: inherit;
+  appearance: none;
+}
+
+input[type="checkbox"] {
+  width: auto;
+}
+
+input:focus-visible,
+input:active,
+textarea:focus-visible,
+textarea:active,
+select:focus-visible,
+select:active {
+  border-color: vars.$accent;
+  outline: 1px solid vars.$accent;
+  outline-offset: 2px;
+}
+
+input:active,
+textarea:active,
+select:active {
+  box-shadow: none;
+}
+
+select {
+  background-image: linear-gradient(45deg,
+      transparent 50%,
+      vars.$foreground 50%),
+    linear-gradient(135deg, vars.$foreground 50%, transparent 50%);
+  background-position: calc(100% - 20px), calc(100% - 15px);
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+select option {
+  background: vars.$background;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  vertical-align: middle;
+  padding: 10px;
+  box-shadow: inset 0 0 0 3px vars.$background;
+}
+
+input[type="radio"] {
+  display: inline-block;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 20px;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background: vars.$accent;
+}

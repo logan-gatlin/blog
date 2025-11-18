@@ -1,0 +1,17 @@
+@use 'vars';
+
+img,
+iframe {
+  display: block;
+  box-sizing: border-box;
+  max-width: 100%;
+  border: 8px solid vars.$accent;
+  padding: 4px;
+  margin: 0 auto;
+}
+
+iframe {
+  margin: 0 auto 1em;
+  aspect-ratio: 16/9;
+  width: 100%;
+}

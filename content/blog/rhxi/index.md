@@ -12,12 +12,7 @@ Heres a recap of our project, and what I'll be doing different next time around.
 
 # Overview
 
-<figure>
-  <img src="./robot_arm.webp" alt="Small robot with tank treads" >
-  <figcaption>
-    Our robot
-  </figcaption>
-</figure>
+<img src="./robot_arm.webp" alt="Small robot with tank treads" >
 
 Our plan was to remotely control a small tank robot with an attached arm.
 We brought a few devices to play with:

@@ -1,102 +1,56 @@
-@font-face {
-  font-family: "outfit";
-  src: url(/Outfit.woff);
-}
-
-@font-face {
-  font-family: "cascadia";
-  src: url(/cascadiacode.woff2);
-}
-
-body {
-  margin: 0;
-  overflow-y: auto;
-}
-
-h1 {
-  font-size: 1.5em;
-}
-
-h2 {
-  font-size: 1.3em;
-}
-
-h3 {
-  font-size: 1.1em;
-}
-
-pre>code {
-  display: block;
-  padding: 1em;
-  width: 100%;
-}
-
-textarea {
-  width: 100%;
-  height: 10em;
-  display: block;
-  padding: 1em;
-}
-
-code {
-  font-family: cascadia;
-  padding: 0.1em 0.2em;
-}
-
-.wrapper {
-  font-family: "outfit";
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 0 1em;
-  max-width: 40em;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.4em;
-}
-
-ul.nav {
-  list-style: none;
-  padding: 1em 0;
-}
-
-ul.nav li {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0.5em 0;
-}
+@use 'vars';
+@use 'base';
+@use 'forms';
+@use 'media';
+@use 'code';
 
 .between {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0.5em 0;
+  padding: .5em 0;
 }
 
-li img {
-  display: block;
-  width: 10em;
+ul.article-list {
+  list-style: none;
+  margin-left: 0;
+
+  li {
+    display: block;
+    flex-wrap: wrap;
+    min-height: 3em;
+    border-left: 0.2em solid vars.$accent;
+    padding: 0.5em;
+    margin-bottom: 1em;
+
+    header {
+      text-decoration: underline vars.$accent;
+    }
+
+    footer {
+      margin-bottom: 0em;
+    }
+
+  }
 }
 
-main {
-  width: 100%;
-  padding: 2em 0;
-  display: block;
-}
+footer {
+  margin-bottom: 1em;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
-a,
-a:visited {
-  color: #df3e23;
-  font-weight: bold;
-  text-decoration: none;
-}
+  a {
+    flex-wrap: wrap;
+    display: block;
+    text-decoration: underline;
 
-a:hover {
-  text-decoration: underline;
+    svg {
+      display: inline-block;
+      width: 1em;
+      color: vars.$accent;
+    }
+  }
 }
