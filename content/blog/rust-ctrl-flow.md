@@ -1,5 +1,5 @@
 +++
-title = "Results are not for error reporting"
+title = "Results are not (just) for error reporting"
 date = 2025-11-17
 slug = "rust-ctrl-flow"
 +++
@@ -199,9 +199,7 @@ enum ParseFnState<'a> {
 
 impl<'a> ProcessFnState<'a> {
   pub fn new(file_name: &'a str) -> Self {
-    Self::Initial {
-      file_name,
-    }
+    Self::Initial(file_name)
   }
 }
 
@@ -254,14 +252,4 @@ This article is about `Result`, but you need not restrict yourself to just this 
 There is also the lesser known [`ControlFlow`](https://doc.rust-lang.org/std/ops/enum.ControlFlow.html) enum with variants `Continue` and `Break`.
 `Result` is simple enough that its trivial to write your own variation, with more specific functionality.
 The `?` operator can even be implemented for these types using the `std::ops::Try` trait.
-When doing this, I like to inline all of my error variants into the type itself to reduce nesting, as in:
-```rust
-enum MyResult<T> {
-  Err1,
-  Err2,
-  Err3,
-  /* ... */
-  Ok(T),
-}
-```
 

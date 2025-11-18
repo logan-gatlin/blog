@@ -30,22 +30,22 @@ ul.article-list {
 
     footer {
       margin-bottom: 0em;
+      justify-content: left;
     }
 
   }
 }
 
 footer {
-  margin-bottom: 1em;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 
   a {
     flex-wrap: wrap;
-    display: block;
     text-decoration: underline;
+    margin: 1em auto;
 
     svg {
       display: inline-block;
