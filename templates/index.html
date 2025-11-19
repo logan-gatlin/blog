@@ -13,11 +13,6 @@
   {% set blog_section = get_section(path="blog/_index.md")%}
   {% for page in blog_section.pages %}
     <li>
-    <!--
-      <a href=" {{page.permalink | safe }} ">
-        ./{{ page.slug }}
-      </a>
-    -->
     <header>
       <a href="{{ page.permalink | safe }}">
         ./{{page.slug}}
