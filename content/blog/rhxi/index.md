@@ -2,6 +2,8 @@
 title = "RowdyHacks XI debrief"
 date = 2025-11-11
 slug = "rh-xi"
+[extra]
+image=""
 +++
 
 At this year's RowdyHacks, our project had a hardware focus.

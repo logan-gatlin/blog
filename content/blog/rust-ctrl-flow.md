@@ -2,6 +2,9 @@
 title = "Results are not (just) for error reporting"
 date = 2025-11-17
 slug = "rust-ctrl-flow"
+description = "Advanced uses of Rust's standard Result type"
+[extra]
+image = "/rust.png"
 +++
 
 I have struggled to understand how to effectively use `Result` in Rust for years.
